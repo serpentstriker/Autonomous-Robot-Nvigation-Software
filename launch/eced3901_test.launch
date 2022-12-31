@@ -1,0 +1,39 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+  <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="node_start_delay" default="60.0"/>
+  <arg name="map_course" default="$(find eced3901-2022-team05)/maps/updatedcourse_map.yaml"/>
+
+  <!-- TurtleBot3 -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- Opening Gazebo -->
+  <include file="$(find eced3901-2022-team05)/launch/eced3901_challenge.launch">
+  </include>
+
+  <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_$(arg slam_methods).launch">
+    <arg name="model" value="$(arg model)"/>
+    <arg name="configuration_basename" value="$(arg configuration_basename)"/>
+  </include>
+
+  <!-- Opening the Rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_slam)/rviz/turtlebot3_$(arg slam_methods).rviz"/>
+  </group>
+
+  <node name="listener" pkg="roscpp_tutorials" type="listener" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+
+  <!-- Opening the Python Code - Dead Reckoning 
+  <node pkg="eced3901-2022-team05" type="eced3901_dt2.py" name="eced3901_dt2" args="odom" output="screen" /> -->
+
+  <!-- Saving the Map 
+  <node pkg="map_server" type="map_saver" name="updatedcourse_map" args="-f $(arg map_course)" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/> -->
+
+</launch>

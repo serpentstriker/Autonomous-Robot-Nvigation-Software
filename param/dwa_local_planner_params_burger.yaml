@@ -1,0 +1,51 @@
+DWAPlannerROS:
+
+# Robot Configuration Parameters
+  max_vel_x: 0.8           #max velocity for x axis(m/s)
+  min_vel_x: -0.015         #min velocity for x axis(m/s)
+ 
+  max_vel_y: 0.0           #max velocity for y axis(m/s)
+  min_vel_y: 0.0           #min velocity for y axis(m/s)
+
+# The velocity when robot is moving in a straight line
+  max_vel_trans:  0.2      #max normal velocity
+  min_vel_trans:  0.05     #min normal velocity (negative value for reverse)
+
+  max_vel_theta: 1.5       #max rotational velocity (radian/sec)
+  min_vel_theta: 0.5       #min rotational velocity (radian/sec)
+
+  acc_lim_x: 2.5          #limit for x axis acceleration (m/s2)
+  acc_lim_y: 0.0          #limit for y axis acceleration (m/s2)
+  acc_lim_theta: 10.0      #theta axis angular acceleration limit (radian/sec2)
+
+# Goal Tolerance Parametes  --- Target point error tolerance
+  xy_goal_tolerance: 0.12        #x,y distance Target point error tolerance (meters) --0.25
+  yaw_goal_tolerance: 1.5      #yaw/rotation axis target point error tolerance (radian) ---3.14
+  latch_xy_goal_tolerance: true  
+
+# Forward Simulation Parameters
+  sim_time: 3.5     #forward simulation trajectory time
+  vx_samples: 10    #no of samples to use when exploring the x velocity space
+  vy_samples: 1     #no of samples to use when exploring the y veocity space
+  vth_samples: 10   #no of samples to use when exploring the theta velocity space
+  controller_frequency: 10.0   #frequency at which this controller will be called (Hz)
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 500      #weight value of the controller that follows the given path; --32
+#how much the controller should stay close to its path it is given. --2
+  goal_distance_bias: 40     #weight value of the goal pose and control velocity; 
+#how much the controller should attempt to reach its local goal, alos controlling speed.
+  occdist_scale: 0.02           #weight value for the obstacle avoidance ---0.002
+#how much the controller should attempt to avoid obstacles
+  forward_point_distance: 0.325 #distance betweent the robot and additional scoring point (meter)
+  stop_time_buffer: 0.2         #time required for the robot to stop before collision (sec)
+  scaling_speed: 0.25           #value of the velocity at which to start scaling the robot's footprint (m/s)
+#scaling speed
+  max_scaling_factor: 0.2
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05  #distance the robot must travel before oscillation flag is reset (m)
+
+# Debugging
+  publish_traj_pc : true
+  publish_cost_grid_pc: true

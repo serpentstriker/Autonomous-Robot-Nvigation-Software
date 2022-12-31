@@ -1,0 +1,26 @@
+#Indicate the object as an obstacle when the distance between the robot and obstacle is within this range
+obstacle_range: 1.0
+#obstacle_range: 0.5
+
+#Sensor value that exceeds this range will be indicated as a freespace
+raytrace_range: 1.5
+
+#external dimensions of the robot is provided as polygons in several points
+footprint: [[-0.12, -0.12], [-0.12, 0.12], [0.1833, 0.14], [0.1833, -0.14]]
+
+#The radius of the robot
+#robot_radius: 0.13
+
+#The radius of the inflation area to prevent collision with obstacles
+inflation_radius: 2.0
+
+#scaling
+cost_scaling_factor: 2.58
+
+map_type: costmap
+
+#specifying the sensor to use 
+observation_sources: scan
+
+#setting the data type and topic, marking status and minimum obstacle for the laser scan
+scan: {sensor_frame: base_scan, data_type: LaserScan, topic: scan, marking: true, clearing: true}
