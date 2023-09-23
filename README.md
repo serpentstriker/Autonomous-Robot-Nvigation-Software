@@ -1,6 +1,6 @@
 # Autonomous-Robot-Navigation-Software
 
-My Team and I developed an autonomous robot for Dalhousie University Gregson Design Challenge 2022. The rules and scoring are listed below. We placed firdt in the compitetion by disarming 6 mines and removing 3.
+My Team and I developed an autonomous robot for Dalhousie University Gregson Design Challenge 2022. The rules and scoring are listed below. We placed first in the competition by disarming 6 mines and removing 3.
 
 ![image](https://user-images.githubusercontent.com/61470710/210140986-bf64b6a3-d9f3-4bea-a9c2-a78d8064e948.png)
 
